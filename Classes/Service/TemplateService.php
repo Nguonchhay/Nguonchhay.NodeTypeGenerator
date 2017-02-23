@@ -5,7 +5,7 @@ namespace Nguonchhay\NodeTypeGenerator\Service;
  * This file is part of the Nguonchhay.NodeTyoeGenerator package.          *
  **************************************************************************/
 
-use TYPO3\Flow\Annotations as Flow;
+use Neos\Flow\Annotations as Flow;
 
 class TemplateService {
 
@@ -26,9 +26,9 @@ class TemplateService {
 	public function generateDocumentConfigTemplate($data, $nodeType = 'content') {
 		$superTypes = [];
 		if ($nodeType == 'content') {
-			$superTypes['TYPO3.Neos:Content'] = true;
+			$superTypes['Neos.Neos:Content'] = true;
 		} else if ($nodeType == 'document') {
-			$superTypes['TYPO3.Neos.NodeTypes:Page'] = true;
+			$superTypes['Neos.Neos.NodeTypes:Page'] = true;
 		}
 
 		foreach ($data['superTypes'] as $superType) {
@@ -62,7 +62,7 @@ class TemplateService {
 			$childNodeData = explode('=>', $strChildNode);
 			if (count($childNodeData)) {
 				$childNodeName = lcfirst(trim($childNodeData[0]));
-				$childNodeItem[$childNodeName]['type'] = 'TYPO3.Neos:ContentCollection';
+				$childNodeItem[$childNodeName]['type'] = 'Neos.Neos:ContentCollection';
 				if (count($childNodeData) > 1) {
 					$childNodeConstraintArray = explode(',', trim($childNodeData[1]));
 					if (count($childNodeConstraintArray)) {

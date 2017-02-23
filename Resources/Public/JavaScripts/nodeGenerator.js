@@ -102,9 +102,9 @@ ACTIVE:".active",ACTIVE_CHILD:"> .nav-item > .active, > .active",DATA_TOGGLE:'[d
     });
     if ($self.val() === 'default') {
       return $('#propertyEditorText').removeClass('hide');
-    } else if ($self.val() === 'TYPO3.Neos/Inspector/Editors/TextAreaEditor') {
+    } else if ($self.val() === 'Neos.Neos/Inspector/Editors/TextAreaEditor') {
       return $('#propertyEditorTextAreaRow').removeClass('hide');
-    } else if ($self.val() === 'TYPO3.Neos/Inspector/Editors/SelectBoxEditor') {
+    } else if ($self.val() === 'Neos.Neos/Inspector/Editors/SelectBoxEditor') {
       return $('#propertyEditorSelect').removeClass('hide');
     }
   });
@@ -164,10 +164,10 @@ ACTIVE:".active",ACTIVE_CHILD:"> .nav-item > .active, > .active",DATA_TOGGLE:'[d
           if (editor === 'default') {
             dataRow.type.editorText.placeholder = textPlaceholder;
             tdPropertyType += '<br>   - Default text: ' + textPlaceholder;
-          } else if (editor === 'TYPO3.Neos/Inspector/Editors/TextAreaEditor') {
+          } else if (editor === 'Neos.Neos/Inspector/Editors/TextAreaEditor') {
             dataRow.type.editorTextArea.rows = textareaRow;
             tdPropertyType += '<br> Text area: rows = ' + textareaRow;
-          } else if (editor === 'TYPO3.Neos/Inspector/Editors/SelectBoxEditor') {
+          } else if (editor === 'Neos.Neos/Inspector/Editors/SelectBoxEditor') {
             dataRow.type.editorSelect.options = selectOptions;
             tdPropertyType += '<br>   - Select : options: ' + selectOptions;
           }

@@ -1,12 +1,4 @@
-TYPO3:
-  Flow:
-    security:
-      authentication:
-        providers:
-          'Typo3BackendProvider':
-            requestPatterns:
-              controllerObjectName:
-                'TYPO3\Neos\Controller\.*|TYPO3\Neos\Service\.*|TYPO3\Media\Controller\.*|WebExcess\Notifications\Controller\NotificationController|Nguonchhay\NodeTypeGenerator\Controller\.*'
+Neos:
   Neos:
     nodeTypes:
       groups:
@@ -19,36 +11,36 @@ Nguonchhay:
   NodeTypeGenerator:
     nodeType:
       superTypes:
-        'TYPO3.Neos.NodeTypes:TitleMixin': 'Title'
-        'TYPO3.Neos.NodeTypes:TextMixin': 'Text'
-        'TYPO3.Neos.NodeTypes:ImageMixin': 'Image'
-        'TYPO3.Neos.NodeTypes:LinkMixin': 'Link'
-        'TYPO3.Neos.NodeTypes:ContentReferences': 'Content references'
-        'TYPO3.Neos.NodeTypes:AssetList': 'Assets'
+        'Neos.NodeTypes:TitleMixin': 'Title'
+        'Neos.NodeTypes:TextMixin': 'Text'
+        'Neos.NodeTypes:ImageMixin': 'Image'
+        'Neos.NodeTypes:LinkMixin': 'Link'
+        'Neos.NodeTypes:ContentReferences': 'Content references'
+        'Neos.NodeTypes:AssetList': 'Assets'
       validators:
-        'TYPO3.Neos/Validation/NotEmptyValidator': 'Not empty'
-        'TYPO3.Neos/Validation/DateTimeValidator': 'DateTime validator'
-        'TYPO3.Neos/Validation/FloatValidator': 'Float validator'
-        'TYPO3.Neos/Validation/IntegerValidator': 'Integer validator'
-        'TYPO3.Neos/Validation/NumberRangeValidator': 'Number range validator'
+        'Neos.Neos/Validation/NotEmptyValidator': 'Not empty'
+        'Neos.Neos/Validation/DateTimeValidator': 'DateTime validator'
+        'Neos.Neos/Validation/FloatValidator': 'Float validator'
+        'Neos.Neos/Validation/IntegerValidator': 'Integer validator'
+        'Neos.Neos/Validation/NumberRangeValidator': 'Number range validator'
       propertyTypes:
         'boolean': 'Boolean'
         'integer': 'Integer'
         'string': 'String'
-        'TYPO3\Media\Domain\Model\ImageInterface': 'Image'
+        'Neos\Media\Domain\Model\ImageInterface': 'Image'
         'DateTime': 'Date time'
         'reference': 'Reference'
         'references': 'References'
-        'TYPO3\Media\Domain\Model\Asset': 'Asset'
-        'array<TYPO3\Media\Domain\Model\Asset>': 'Asset list'
+        'Neos\Media\Domain\Model\Asset': 'Asset'
+        'array<Neos\Media\Domain\Model\Asset>': 'Asset list'
       groups:
         'general': 'General'
         'structure': 'Structure'
         'structureitem': 'Structure item'
       editors:
         'default': 'Text'
-        'TYPO3.Neos/Inspector/Editors/TextAreaEditor': 'Text area'
-        'TYPO3.Neos/Inspector/Editors/SelectBoxEditor': 'Select'
-        'TYPO3.Neos/Inspector/Editors/LinkEditor': 'Link'
+        'Neos.Neos/Inspector/Editors/TextAreaEditor': 'Text area'
+        'Neos.Neos/Inspector/Editors/SelectBoxEditor': 'Select'
+        'Neos.Neos/Inspector/Editors/LinkEditor': 'Link'
     fontAwesome: 'http://fontawesome.io/icons'
     staticTemplatePath: 'resource://Nguonchhay.NodeTypeGenerator/Private/StaticTemplates'

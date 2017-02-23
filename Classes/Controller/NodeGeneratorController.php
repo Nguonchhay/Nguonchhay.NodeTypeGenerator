@@ -8,7 +8,7 @@ namespace Nguonchhay\NodeTypeGenerator\Controller;
 use Nguonchhay\NodeTypeGenerator\Domain\Model\ContentNodeType;
 use Nguonchhay\NodeTypeGenerator\Domain\Model\DocumentNodeType;
 use Nguonchhay\NodeTypeGenerator\Service\FileService;
-use TYPO3\Flow\Annotations as Flow;
+use Neos\Flow\Annotations as Flow;
 
 class NodeGeneratorController extends AbstractController {
 
@@ -128,10 +128,10 @@ class NodeGeneratorController extends AbstractController {
 				} else if($extension == 'ts2') {
 					$fusion = '';
 					if ($arguments['isDocument']) {
-						$fusionDestination = $baseDestination . '/Resources/Private/TypoScript/Root.ts2';
+						$fusionDestination = $baseDestination . '/Resources/Private/Fusion/Root.fusion';
 						$fusion = FileService::read($fusionDestination);
 					} else {
-						$fusionDestination = $baseDestination . '/Resources/Private/TypoScript/NodeTypes/' . $filename;
+						$fusionDestination = $baseDestination . '/Resources/Private/Fusion/NodeTypes/' . $filename;
 					}
 					$fusion .= "\n" . $arguments['fusion'];
 					FileService::write($fusionDestination, $fusion);

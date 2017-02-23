@@ -5,7 +5,7 @@ namespace Nguonchhay\NodeTypeGenerator\Service;
  * This file is part of the Nguonchhay.NodeTyoeGenerator package.          *
  **************************************************************************/
 
-use TYPO3\Flow\Annotations as Flow;
+use Neos\Flow\Annotations as Flow;
 
 class PropertyTemplateService {
 
@@ -44,14 +44,14 @@ class PropertyTemplateService {
 		$name = key($property);
 		foreach ($validators as $validator) {
 			$validator = trim($validator);
-			if ($validator == 'TYPO3.Neos/Validation/NumberRangeValidator') {
+			if ($validator == 'Neos.Neos/Validation/NumberRangeValidator') {
 				$property[$name]['validation'][$validator] = [
 					'minimum' => 0,
 					'maximum' => 1000000
 				];
 			} else {
 				$property[$name]['validation'][$validator] = [];
-				if ($validator == 'TYPO3.Neos/Validation/NotEmptyValidator') {
+				if ($validator == 'Neos.Neos/Validation/NotEmptyValidator') {
 					unset($property[$name]['ui']['inspector']['editorOptions']['allowEmpty']);
 				}
 			}
@@ -170,7 +170,7 @@ class PropertyTemplateService {
 				'inspector' => [
 					'group' => $data['group'],
 					'position' => 50,
-					'editor' => 'TYPO3.Neos/Inspector/Editors/TextAreaEditor',
+					'editor' => 'Neos.Neos/Inspector/Editors/TextAreaEditor',
 					'editorOptions' => [
 						'rows' => intval($data['rows'])
 					]
@@ -197,7 +197,7 @@ class PropertyTemplateService {
 				'inspector' => [
 					'group' => $data['group'],
 					'position' => 50,
-					'editor' => 'TYPO3.Neos/Inspector/Editors/SelectBoxEditor',
+					'editor' => 'Neos.Neos/Inspector/Editors/SelectBoxEditor',
 					'editorOptions' => [
 						'allowEmpty' => true,
 						'placeholder' => 'Select ' . $name . ' options'
@@ -240,7 +240,7 @@ class PropertyTemplateService {
 				'inspector' => [
 					'group' => $data['group'],
 					'position' => 50,
-					'editor' => 'TYPO3.Neos/Inspector/Editors/LinkEditor'
+					'editor' => 'Neos.Neos/Inspector/Editors/LinkEditor'
 				]
 			]
 		];
@@ -273,7 +273,7 @@ class PropertyTemplateService {
 				'validators' => $data['validators']
 			];
 			$property = $this->generateSingleTextProperty($adjustData);
-		} else if ($data['type']['editorType'] == 'TYPO3.Neos/Inspector/Editors/TextAreaEditor') {
+		} else if ($data['type']['editorType'] == 'Neos.Neos/Inspector/Editors/TextAreaEditor') {
 			$adjustData = [
 				'name' => $data['name'],
 				'label' => $data['label'],
@@ -283,7 +283,7 @@ class PropertyTemplateService {
 				'validators' => $data['validators']
 			];
 			$property = $this->generateTextAreaProperty($adjustData);
-		} else if ($data['type']['editorType'] == 'TYPO3.Neos/Inspector/Editors/SelectBoxEditor') {
+		} else if ($data['type']['editorType'] == 'Neos.Neos/Inspector/Editors/SelectBoxEditor') {
 			$adjustData = [
 				'name' => $data['name'],
 				'label' => $data['label'],
@@ -293,7 +293,7 @@ class PropertyTemplateService {
 				'validators' => $data['validators']
 			];
 			$property = $this->generateSelectProperty($adjustData);
-		} else if ($data['type']['editorType'] == 'TYPO3.Neos/Inspector/Editors/LinkEditor') {
+		} else if ($data['type']['editorType'] == 'Neos.Neos/Inspector/Editors/LinkEditor') {
 			$adjustData = [
 				'name' => $data['name'],
 				'label' => $data['label'],
@@ -344,7 +344,7 @@ class PropertyTemplateService {
 		$propertyTemplate = [];
 		$type = trim($type);
 		if ($this->isPropertyTypesExist($type)) {
-			if ($type == 'boolean' || $type == 'integer' || $type == 'reference' || $type == 'references' || $type == 'TYPO3\Media\Domain\Model\Asset' || $type == 'array<TYPO3\Media\Domain\Model\Asset>' || $type == 'TYPO3\Media\Domain\Model\ImageInterface') {
+			if ($type == 'boolean' || $type == 'integer' || $type == 'reference' || $type == 'references' || $type == 'Neos\Media\Domain\Model\Asset' || $type == 'array<Neos\Media\Domain\Model\Asset>' || $type == 'Neos\Media\Domain\Model\ImageInterface') {
 				$propertyTemplate = $this->generateProperty($type, $data);
 			} else if ($type == 'DateTime') {
 				$propertyTemplate = $this->generateDateTimeProperty($data);

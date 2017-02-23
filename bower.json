@@ -2,13 +2,13 @@
   "name": "coffeescript-grunt",
   "version": "0.0.0",
   "authors": [
-    "Nguonchhay"
+    "Nguonchhay Touch"
   ],
   "description": "Bower",
   "main": "index.html",
   "license": "Proprietary",
   "private": true,
   "dependencies": {
-    "font-awesome": "4.6.*"
+    "font-awesome": "4.7.*"
   }
 }

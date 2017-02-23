@@ -1,6 +1,19 @@
 Installation
 ------------
 
+### Warning
+
+The master branch is in upgrade process to compatible with Neos 3.0
+
+### Compatibility
+
+See the following table for the correct branch to choose:
+
+| Neos CMS | Branches    |
+| -------- | ----------- |
+| >= 3.0   | dev-master  |
+| <= 2.3   | 2.3         |
+
 ### Open terminal and run composer require command
 
 ```

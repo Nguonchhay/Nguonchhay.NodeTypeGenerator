@@ -4,8 +4,8 @@
 	"description": "Grunt CoffeeScript example",
 	"main": "index.js",
 	"private": true,
-	"author": "Nguonchhay",
-	"license": "Web Essentials",
+	"author": "Nguonchhay Touch",
+	"license": "MIT",
 	"dependencies": {
 		"grunt": "^1.0.0",
 		"grunt-contrib-clean": "^1.0.0",

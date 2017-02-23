@@ -6,9 +6,9 @@ namespace Nguonchhay\NodeTypeGenerator\Domain\Model;
  **************************************************************************/
 
 use Nguonchhay\NodeTypeGenerator\Service\FileService;
-use TYPO3\Flow\Annotations as Flow;
+use Neos\Flow\Annotations as Flow;
 use Nguonchhay\NodeTypeGenerator\Service\TemplateService;
-use TYPO3\Flow\Configuration\Source\YamlSource;
+use Neos\Flow\Configuration\Source\YamlSource;
 
 abstract class AbstractNodeType {
 
@@ -16,7 +16,7 @@ abstract class AbstractNodeType {
 	const BASE_PATH = 'resource://Nguonchhay.NodeTypeGenerator/Private/StaticTemplates';
 	const TEMP_PATH = 'Temporary';
 	const NODETYPE_CONFIG_EXTENSION = '.yaml';
-	const NODETYPE_FUSION_EXTENSION = '.ts2';
+	const NODETYPE_FUSION_EXTENSION = '.fusion';
 	const NODETYPE_TEMPLATE_EXTENSION = '.html';
 
 	/**
@@ -207,24 +207,24 @@ abstract class AbstractNodeType {
 	public function generateSuperTypesToTemplate($superTypes, &$params, $isDocument = false) {
 		array_shift($superTypes);
 		foreach ($superTypes as $superType => $value) {
-			if (strpos('TYPO3.Neos.NodeTypes:TitleMixin', $superType) !== FALSE) {
+			if (strpos('Neos.NodeTypes:TitleMixin', $superType) !== FALSE) {
 				if ($isDocument) {
 					$params['superTypes'] .= "\n\t\t\t<neos:contentElement.wrap>\n\t\t\t\t<div>\n\t\t\t\t\t{neos:contentElement.editable(property: 'title')}\n\t\t\t\t</div>\n\t\t\t</neos:contentElement.wrap>";
 				} else {
 					$params['superTypes'] .= "\n\t<div{attributes -> f:format.raw()}>\n\t\t{neos:contentElement.editable(property: 'title')}\n\t</div>";
 				}
-			} else if (strpos('TYPO3.Neos.NodeTypes:TextMixin', $superType) !== FALSE) {
+			} else if (strpos('Neos.NodeTypes:TextMixin', $superType) !== FALSE) {
 				if ($isDocument) {
 					$params['superTypes'] .= "\n\t\t\t<neos:contentElement.wrap>\n\t\t\t\t<div>\n\t\t\t\t\t{neos:contentElement.editable(property: 'text')}\n\t\t\t\t</div>\n\t\t\t</neos:contentElement.wrap>";
 				} else {
 					$params['superTypes'] .= "\n\t<div{attributes -> f:format.raw()}>\n\t\t{neos:contentElement.editable(property: 'text')}\n\t</div>";
 				}
-			} else if (strpos('TYPO3.Neos.NodeTypes:ImageMixin', $superType) !== FALSE) {
+			} else if (strpos('Neos.NodeTypes:ImageMixin', $superType) !== FALSE) {
 				$params['superTypes'] .= "\n\t" . '<f:if condition="{image}">' . "\n\t\t\t\t" . '<media:image asset="{image}" alt="{alternativeText}" title="{title}" width="{width}" maximumWidth="{maximumWidth}" height="{height}" maximumHeight="{maximumHeight}" allowUpScaling="{allowUpScaling}" allowCropping="{allowCropping}" />' . "\n\t\t\t</f:if>";
 				$params['imageNameSpace'] .= '{namespace media=TYPO3\Media\ViewHelpers}';
-			} else if (strpos('TYPO3.Neos.NodeTypes:LinkMixin', $superType) !== FALSE) {
+			} else if (strpos('Neos.NodeTypes:LinkMixin', $superType) !== FALSE) {
 				$params['properties'] .= "\n\t<a href=\"{link -> f:format.raw()}\">{link -> f:format.raw()}</a>";
-			} else if (strpos('TYPO3.Neos.NodeTypes:ContentReferences', $superType) !== FALSE || strpos('TYPO3.Neos.NodeTypes:AssetList', $superType) !== FALSE) {
+			} else if (strpos('Neos.NodeTypes:ContentReferences', $superType) !== FALSE || strpos('Neos.NodeTypes:AssetList', $superType) !== FALSE) {
 				$params['superTypes'] .= "\n\t<!--Add your fusion here-->";
 			}
 		}
@@ -248,18 +248,18 @@ abstract class AbstractNodeType {
 						} else {
 							$params['properties'] .= "\n\t<div{attributes -> f:format.raw()}>\n\t\t{neos:contentElement.editable(property: '$name')}\n\t</div>";
 						}
-					} else if (isset($property['ui']['inspector']['editor']) && $property['ui']['inspector']['editor'] == 'TYPO3.Neos/Inspector/Editors/LinkEditor') {
+					} else if (isset($property['ui']['inspector']['editor']) && $property['ui']['inspector']['editor'] == 'Neos.Neos/Inspector/Editors/LinkEditor') {
 						$params['properties'] .= "\n\t\t\t" . '<a href="{' . $name . '-> f:format.raw()}">{' . $name . " -> f:format.raw()}</a>";
 					} else {
 						$params['properties'] .= "\n\t\t\t{" . $name . " -> f:format.raw()}";
 					}
 				} else if ($type == 'DateTime') {
 					$params['properties'] .= "\n\t\t\t" . '<f:if condition="{' . $name . '}"><f:format.date format="' . $property['ui']['inspector']['editorOptions']['format'] . '">{' . $name . ' -> f:format.raw()}</f:format.date></f:if>';
-				} else if ($type == 'TYPO3\Media\Domain\Model\ImageInterface') {
+				} else if ($type == 'Neos\Media\Domain\Model\ImageInterface') {
 					$params['properties'] .= "\n\t\t\t" . '<f:if condition="{' . $name . '}">' . "\t\t\t\t" . '<media:image asset="{' . $name . '}" alt="{alternativeText}" title="{title}" width="{width}" maximumWidth="{maximumWidth}" height="{height}" maximumHeight="{maximumHeight}" allowUpScaling="{allowUpScaling}" allowCropping="{allowCropping}" />' . "\t\t\t" . '</f:if>';
 				} else if ($type == 'reference' || $type == 'references') {
 					$params['properties'] .= "\n\t\t\t<!-- Add template for $name reference(s) -->";
-				} else if ($type == 'TYPO3\Media\Domain\Model\Asset' || $type == 'array<TYPO3\Media\Domain\Model\Asset>') {
+				} else if ($type == 'Neos\Media\Domain\Model\Asset' || $type == 'array<Neos\Media\Domain\Model\Asset>') {
 					$params['properties'] .= "\n\t\t\t<!-- Add template for $name asset(s)-->";
 				}
 			}

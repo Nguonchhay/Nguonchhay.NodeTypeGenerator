@@ -7,7 +7,7 @@ namespace Nguonchhay\NodeTypeGenerator\Domain\Model;
 
 
 use Nguonchhay\NodeTypeGenerator\Service\FileService;
-use TYPO3\Flow\Annotations as Flow;
+use Neos\Flow\Annotations as Flow;
 
 class ContentNodeType extends AbstractNodeType {
 
@@ -89,7 +89,7 @@ class ContentNodeType extends AbstractNodeType {
 			/* Prepare params to replace funsion template contents */
 			$arrSiteKeys = explode(':', $contentName);
 			$params = [
-				'superType' => 'TYPO3.Neos:Content',
+				'superType' => 'Neos.Neos:Content',
 				'content' => $contentName,
 				'contentFilename' => ucfirst($arrSiteKeys[1]) . '.html',
 				'siteKey' => $arrSiteKeys[0],
@@ -104,8 +104,8 @@ class ContentNodeType extends AbstractNodeType {
 				$superTypes = $this->content[$contentName]['superTypes'];
 				array_shift($superTypes);
 				foreach ($superTypes as $superType => $value) {
-					if (strpos('TYPO3.Neos.NodeTypes:LinkMixin', $superType) !== FALSE) {
-						$params['superTypes'] .= "link.@process.convertUris = TYPO3.Neos:ConvertUris";
+					if (strpos('Neos.NodeTypes:LinkMixin', $superType) !== FALSE) {
+						$params['superTypes'] .= "link.@process.convertUris = Neos.Neos:ConvertUris";
 						break;
 					}
 				}
@@ -121,8 +121,8 @@ class ContentNodeType extends AbstractNodeType {
 			/* Properties fusion */
 			if (isset($this->content[$contentName]['properties'])) {
 				foreach ($this->content[$contentName]['properties'] as $name => $property) {
-					if ($property['type'] == 'string' && isset($property['ui']['inspector']['editor']) && $property['ui']['inspector']['editor'] == 'TYPO3.Neos/Inspector/Editors/LinkEditor') {
-						$params['properties'] .= "\n\t" . $name .'.@process.convertUris = TYPO3.Neos:ConvertUris';
+					if ($property['type'] == 'string' && isset($property['ui']['inspector']['editor']) && $property['ui']['inspector']['editor'] == 'Neos.Neos/Inspector/Editors/LinkEditor') {
+						$params['properties'] .= "\n\t" . $name .'.@process.convertUris = Neos.Neos:ConvertUris';
 					}
 				}
 			}

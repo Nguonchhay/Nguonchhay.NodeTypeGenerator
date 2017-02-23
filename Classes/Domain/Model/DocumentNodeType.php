@@ -7,8 +7,7 @@ namespace Nguonchhay\NodeTypeGenerator\Domain\Model;
 
 
 use Nguonchhay\NodeTypeGenerator\Service\FileService;
-use TYPO3\Flow\Annotations as Flow;
-use TYPO3\Flow\Configuration\Source\YamlSource;
+use Neos\Flow\Annotations as Flow;
 
 class DocumentNodeType extends AbstractNodeType {
 
@@ -104,16 +103,16 @@ class DocumentNodeType extends AbstractNodeType {
 				$superTypes = $this->content[$documentName]['superTypes'];
 				array_shift($superTypes);
 				foreach ($superTypes as $superType => $value) {
-					if (strpos('TYPO3.Neos.NodeTypes:TitleMixin', $superType) !== FALSE) {
+					if (strpos('Neos.NodeTypes:TitleMixin', $superType) !== FALSE) {
 						$params['superTypes'] .= 'title = ${q(node).property' . "('title')}\n\t\t";
-					} else if (strpos('TYPO3.Neos.NodeTypes:TextMixin', $superType) !== FALSE) {
+					} else if (strpos('Neos.NodeTypes:TextMixin', $superType) !== FALSE) {
 						$params['superTypes'] .= 'text = ${q(node).property' . "('text')}\n\t\t";
-					} else if (strpos('TYPO3.Neos.NodeTypes:ImageMixin', $superType) !== FALSE) {
+					} else if (strpos('Neos.NodeTypes:ImageMixin', $superType) !== FALSE) {
 						$params['superTypes'] .= 'image = ${q(node).property' . "('image')}\n\t\t";
-					} else if (strpos('TYPO3.Neos.NodeTypes:LinkMixin', $superType) !== FALSE) {
+					} else if (strpos('Neos.NodeTypes:LinkMixin', $superType) !== FALSE) {
 						$params['superTypes'] .= 'link = ${q(node).property' . "('link')}\n\t\t";
-						$params['superTypes'] .= "link.@process.convertUris = TYPO3.Neos:ConvertUris";
-					} else if (strpos('TYPO3.Neos.NodeTypes:ContentReferences', $superType) !== FALSE || strpos('TYPO3.Neos.NodeTypes:AssetList', $superType) !== FALSE) {
+						$params['superTypes'] .= "link.@process.convertUris = Neos.Neos:ConvertUris";
+					} else if (strpos('Neos.NodeTypes:ContentReferences', $superType) !== FALSE || strpos('Neos.NodeTypes:AssetList', $superType) !== FALSE) {
 						$params['superTypes'] .= "<!--Add your fusion here-->\n\t\t";
 					}
 				}
@@ -134,8 +133,8 @@ class DocumentNodeType extends AbstractNodeType {
 					if ($name != 'layout') {
 						$params['properties'] .= "\n\t\t" . $name . ' = ${q(node).property' . "('" . $name . "')}";
 
-						if ($property['type'] == 'string' && isset($property['ui']['inspector']['editor']) && $property['ui']['inspector']['editor'] == 'TYPO3.Neos.NodeTypes:LinkMixin') {
-							$params['properties'] .= "\n\t" . $name .'.@process.convertUris = TYPO3.Neos:ConvertUris';
+						if ($property['type'] == 'string' && isset($property['ui']['inspector']['editor']) && $property['ui']['inspector']['editor'] == 'Neos.NodeTypes:LinkMixin') {
+							$params['properties'] .= "\n\t" . $name .'.@process.convertUris = Neos.Neos:ConvertUris';
 						}
 					}
 				}
